@@ -14,7 +14,7 @@ def bisection_method(func, a, b, error=0.02, max_iterations=100):
     """
     if func(a) * func(b) >= 0:
         raise ValueError("La función no cumple el criterio de cambio de signo en el intervalo dado.")
-
+    
     for i in range(max_iterations):
         c = (a + b) / 2  # Punto medio del intervalo
 
