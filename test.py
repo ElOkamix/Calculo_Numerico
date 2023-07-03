@@ -3,6 +3,7 @@ import unittest
 from biseccion import metodo_biseccion
 from newton_raphson import Newton_Raphson
 from integ_num import suma_riemann
+from integ_num import trapecio
 
 class TestMethods(unittest.TestCase):
      # Aquí escribes el código para probar la función biseccion
@@ -18,4 +19,8 @@ class TestMethods(unittest.TestCase):
     # Aquí escribes el código para probar la función integracion_numerica
     def test_integracion_numerica(self):
         root = suma_riemann(lambda x: x**2 - 4, 2)
+        self.assertAlmostEqual(root, 2)
+
+    def test_integracion_numerica(self):
+        root = trapecio(lambda x: x**2 - 4, 2)
         self.assertAlmostEqual(root, 2)
