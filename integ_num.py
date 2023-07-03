@@ -26,9 +26,9 @@ def suma_riemann(f, a, b, n):
 def f(x):
     return x ** 2
 
-a = 0
-b = 1
-n = 100
+a = 1  # Límite inferior del intervalo de integración
+b = 3  # Límite superior del intervalo de integración
+n = 100  # Número de subdivisiones del intervalo
 
 resultado = suma_riemann(f, a, b, n)
 print(resultado)

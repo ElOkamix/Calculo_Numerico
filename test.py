@@ -17,5 +17,5 @@ class TestMethods(unittest.TestCase):
 
     # Aquí escribes el código para probar la función integracion_numerica
     def test_integracion_numerica(self):
-        root = f(lambda x: x**2 - 4, 2)
+        root = suma_riemann(lambda x: x**2 - 4, 2)
         self.assertAlmostEqual(root, 2)

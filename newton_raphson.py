@@ -1,4 +1,4 @@
-from sympy import symbols, diff
+from sympy import symbols, diff, lambdify
 
 def Newton_Raphson(f, x0, E, N):
     """
@@ -14,10 +14,14 @@ def Newton_Raphson(f, x0, E, N):
     x: Valor de la raíz encontrada.
     """
     
+    x = symbols('x')
+    f_prime = diff(f(x), x)  # Calcula la derivada de f con respecto a x usando SymPy
+    f_prime = lambdify(x, f_prime)  # Convierte la expresión simbólica en una función numérica
+    
     x = x0
     for i in range(N):
         y = f(x)
-        y_prime = diff(f, x)  # Calcula la derivada de f en x usando SymPy
+        y_prime = f_prime(x)  # Evalúa la derivada de f en x
         x_next = x - y / y_prime
         
         if abs(x_next - x) < E:
@@ -28,7 +32,6 @@ def Newton_Raphson(f, x0, E, N):
     return x  # Retorna el valor de x después de N iteraciones si no se alcanza la tolerancia
 
 # Acá el ejemplo de uso
-x = symbols('x')
 
 def f(x):
     return x**2 - 4

@@ -37,7 +37,7 @@ def func(x):
 
 a = 1
 b = 3
-error = 0.01
+error = 0.02
 max_iterations = 10
 
 # Llamada al método de bisección para encontrar la aproximación de la raíz
