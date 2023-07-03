@@ -1,4 +1,4 @@
-def bisection_method(func, a, b, error=0.02, max_iterations=100):
+def metodo_biseccion(func, a, b, error=0.02, max_iterations=100):
     """
     Implementación del método de bisección para encontrar la raíz de una función.
 
@@ -27,3 +27,20 @@ def bisection_method(func, a, b, error=0.02, max_iterations=100):
             a = c
 
     raise ValueError("El método no converge después de {} iteraciones.".format(max_iterations))
+
+""" Acá el ejemplo de Uso """
+
+def func(x):
+    return x**2 - 4
+
+# Especificación del intervalo inicial y los parámetros del método de bisección
+
+a = 1
+b = 3
+error = 0.01
+max_iterations = 10
+
+# Llamada al método de bisección para encontrar la aproximación de la raíz
+
+approx_root = metodo_biseccion(func, a, b, error, max_iterations)
+print("Aproximación de la raíz: ", approx_root)

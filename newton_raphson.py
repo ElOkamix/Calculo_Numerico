@@ -27,7 +27,7 @@ def Newton_Raphson(f, x0, E, N):
     
     return x  # Retorna el valor de x después de N iteraciones si no se alcanza la tolerancia
 
-# Ejemplo de uso
+# Acá el ejemplo de uso
 x = symbols('x')
 
 def f(x):

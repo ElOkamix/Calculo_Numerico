@@ -2,9 +2,7 @@ import unittest
 
 from biseccion import metodo_biseccion
 from newton_raphson import Newton_Raphson
-from integ_num import f
-from sympy import symbols, diff
-from scipy import integrate
+from integ_num import suma_riemann
 
 class TestMethods(unittest.TestCase):
      # Aquí escribes el código para probar la función biseccion
