@@ -1,44 +1,50 @@
-from sympy import symbols, diff, lambdify
+import sympy as sp
 
-def Newton_Raphson(f, x0, E, N):
-    """
-    Implementación del método de Newton-Raphson para encontrar la raíz de una función.
+print("\nMetodo Newton Raphson\n")
 
-    Argumentos:
-    f: Función para la cual se desea encontrar la raíz.
-    x0: Valor inicial para comenzar la iteración.
-    E: Tolerancia (error máximo aceptado).
-    N: Número máximo de iteraciones.
-
-    Retorna:
-    x: Valor de la raíz encontrada.
-    """
+def newton_raphson(F, x0, E, N):
+    # Definir el símbolo x para la variable independiente
+    x = sp.Symbol('x')
     
-    x = symbols('x')
-    f_prime = diff(f(x), x)  # Calcula la derivada de f con respecto a x usando SymPy
-    f_prime = lambdify(x, f_prime)  # Convierte la expresión simbólica en una función numérica
+    # Convertir la expresión F en una expresión simbólica
+    f = sp.sympify(F)
     
-    x = x0
-    for i in range(N):
-        y = f(x)
-        y_prime = f_prime(x)  # Evalúa la derivada de f en x
-        x_next = x - y / y_prime
+    # Calcular la derivada de la expresión F respecto a x
+    f_prime = f.diff(x)
+    
+    # Convertir las expresiones simbólicas en funciones numéricas
+    F = sp.lambdify(x, f)
+    F_prime = sp.lambdify(x, f_prime)
+    
+    n = 1
+    error_relativo = 100
+    x_i = x0
+    
+    while n <= N and error_relativo > E:
+        # Aplicar la fórmula de Newton-Raphson
+        x_i_mas_1 = x_i - F(x_i) / F_prime(x_i)
         
-        if abs(x_next - x) < E:
-            return x_next
+        print(f"Iteración {n}:")
+        print(f"x_{n} = {x_i}, x_{n+1} = {x_i_mas_1}")
         
-        x = x_next
+        if n > 1:
+            # Calcular el error relativo
+            error_relativo = abs((x_i_mas_1 - x_i) / x_i_mas_1)
+            
+        print(f"Error relativo: {error_relativo}\n")
+        
+        x_i = x_i_mas_1
+        n += 1
     
-    return x  # Retorna el valor de x después de N iteraciones si no se alcanza la tolerancia
+    if n > N:
+        print("El método de Newton-Raphson no converge después de N iteraciones.")
+    else:
+        print(f"La aproximación de la raíz es {x_i_mas_1} con un error relativo de {error_relativo}")
 
-# Acá el ejemplo de uso
-
-def f(x):
-    return x**2 - 4
-
-x0 = 2  # Valor inicial
-E = 0.02  # Tolerancia
+# Ejemplo de uso
+F = 'sin(x) - exp(-x)'
+x0 = 1  # Valor inicial
+E = 0.02  # Error relativo
 N = 100  # Número máximo de iteraciones
 
-raiz = Newton_Raphson(f, x0, E, N)
-print("La raíz encontrada es:", raiz)
+newton_raphson(F, x0, E, N)

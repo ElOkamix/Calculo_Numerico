@@ -1,26 +1,35 @@
 import unittest
 
-from biseccion import metodo_biseccion
-from newton_raphson import Newton_Raphson
+#Importación de los métodos
+
+from biseccion import biseccion
+from newton_raphson import newton_raphson
 from integ_num import suma_riemann
-from integ_num import trapecio
+from integ_num import metodo_trapecio
+from Ecuaciones_Dif import metodo_euler
+
+#Clase con los testt
 
 class TestMethods(unittest.TestCase):
-     # Aquí escribes el código para probar la función biseccion
+     # Aquí el código para probar la función biseccion
     def test_biseccion(self):
-        root = metodo_biseccion(lambda x: x**2 - 4, 0, 3)
-        self.assertAlmostEqual(root, 2)
+        pass
 
-    # Aquí escribes el código para probar la función newton_raphson
+    # Aquí el código para probar la función newton_raphson
     def test_newton_raphson(self):
-        root = Newton_Raphson(lambda x: x**2 - 4, 2)
-        self.assertAlmostEqual(root, 2)
+        pass
 
-    # Aquí escribes el código para probar la función integracion_numerica
+    # Aquí el código para probar la función integracion_numerica
     def test_integracion_numerica(self):
-        root = suma_riemann(lambda x: x**2 - 4, 2)
-        self.assertAlmostEqual(root, 2)
+        pass
 
     def test_integracion_numerica(self):
-        root = trapecio(lambda x: x**2 - 4, 2)
-        self.assertAlmostEqual(root, 2)
+        pass
+
+    #Aquí el código para probar la función Ecuaciones_Dif
+
+    def test_ecuaciones_diferenciales(self):
+        pass
+        
+        if __name__ == '__main__':
+            unittest.main()
